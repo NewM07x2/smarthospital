@@ -79,3 +79,27 @@ npm start
 API URL: http://localhost:8000/api も正しい設定です
 CORS問題: Nginx設定とLaravel CORS設定の両方で解決
 認証: Sanctumの適切な設定を追加
+
+
+・Laravel バージョン（10指定 → 現状12）
+docker compose run --rm app composer update
+次の作業ステップ
+既存コンテナの再構築（キャッシュ残存を避けるため）
+docker compose down
+docker compose build --no-cache app
+
+依存パッケージ更新（ダウングレード適用）
+docker compose run --rm app composer update
+
+キャッシュクリアと動作確認
+docker compose run --rm app php artisan optimize:clear
+docker compose up -d
+
+Laravel バージョン確認
+docker compose exec app php artisan --version
+
+
+本の保存要件：フロントとAPIのフィールド不一致
+books テーブルのマイグレーション未作成
+フロント一覧 (BookList.js) 側も author / isbn / publication_date を表示しようとしており、APIレスポンス（title, read_date, review）と乖離
+AddBook で「読んだ日」「感想」が入力できないため、課題仕様の中核が未実現
