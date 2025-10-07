@@ -72,20 +72,20 @@ function App() {
         {user && <Header user={user} onLogout={handleLogout} />}
         
         <Routes>
-          <Route 
-            path="/login" 
+          <Route
+            path="/login"
             element={!user ? <Login onLogin={handleLogin} /> : <Navigate to="/" />} 
           />
-          <Route 
-            path="/register" 
+          <Route
+            path="/register"
             element={!user ? <Register onLogin={handleLogin} /> : <Navigate to="/" />} 
           />
-          <Route 
-            path="/" 
+          <Route
+            path="/"
             element={user ? <BookList /> : <Navigate to="/login" />} 
           />
-          <Route 
-            path="/books/add" 
+          <Route
+            path="/books/add"
             element={user ? <AddBook /> : <Navigate to="/login" />} 
           />
         </Routes>
