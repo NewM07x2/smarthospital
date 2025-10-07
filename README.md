@@ -79,8 +79,3 @@ npm start
 API URL: http://localhost:8000/api も正しい設定です
 CORS問題: Nginx設定とLaravel CORS設定の両方で解決
 認証: Sanctumの適切な設定を追加
-
-SQLSTATE[42S02]: Base table or view not found: 1146 Table 'book_records.personal_access_tokens' doesn't exist (Connection: mysql, SQL: insert into `personal_access_tokens` (`name`, `token`, `abilities`, `expires_at`, `tokenable_id`, `tokenable_type`, `updated_at`, `created_at`) values (auth_token, 187b9047a0b8d0cb05b7c7be0786e1038b70f4226351568c52a9873b21f75c0f, ["*"], ?, 1, App\Models\User, 2025-10-07 12:57:16, 2025-10-07 12:57:16))
-
-
-
