@@ -24,7 +24,7 @@ npm install react-router-dom axios
 
 create-react-appで作成された後、以下のディレクトリ構造にファイルを追加/編集してください：
 
-```
+```text
 react-app/
 ├── public/
 │   └── index.html (編集)
