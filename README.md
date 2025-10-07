@@ -4,7 +4,7 @@
 ■条件
 APIとフロントエンドを分割して作成してください。
 API側はLaravel10で作成してください。
-フロント側はNuxt2で作成してください。
+フロント側はreactで作成してください。
 データの保存にはMySQLを利用してください。
 構築にはdockerを利用してください。
 
@@ -15,5 +15,25 @@ githubのpublicリポジトリとして作成し、そのURLを提出くださ�
 課題を受け取ってから、7日以内での提出をお願いいたします。
 稼働の関係で7日以上かかる場合は、事前に提出期限をお伝え下さい。
 
-■その他
-不明点などありましたら、ご質問ください。
+
+react-app/
+├── package.json
+├── .gitignore
+├── public/
+│   ├── index.html
+│   └── robots.txt
+└── src/
+    ├── index.js          # エントリポイント
+    ├── index.css         # グローバルスタイル
+    ├── App.js            # メインアプリコンポーネント
+    ├── contexts/
+    │   └── AuthContext.js # 認証状態管理
+    ├── components/
+    │   ├── Header.js      # ヘッダーコンポーネント
+    │   └── ProtectedRoute.js # 認証必須ルート
+    └── pages/
+        ├── Home.js        # ホームページ
+        ├── Login.js       # ログインページ
+        ├── Register.js    # 会員登録ページ
+        ├── BookList.js    # 本一覧ページ
+        └── AddBook.js     # 本追加ページ
