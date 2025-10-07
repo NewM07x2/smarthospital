@@ -64,12 +64,12 @@ services:
   # -----------------------------------------------------
   # 4. Node.js (React フロントエンド実行環境)
   # -----------------------------------------------------
-  react:
+  frontend:
       image: node:18-alpine # より新しいLTSのNodeバージョンを使用
       container_name: react_front
       working_dir: /app
       volumes:
-          - ./react:/app # マウントディレクトリを 'react' に変更
+          - ./react-app:/app # マウントディレクトリを 'react-app' に変更
       ports:
           - "3000:3000" # ホストの3000ポートでReactにアクセス
       # Reactプロジェクトを起動するコマンドに後で変更します
