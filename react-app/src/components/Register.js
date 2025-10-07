@@ -32,6 +32,7 @@ const Register = ({ onLogin }) => {
 
     try {
       const response = await axios.post('/register', formData);
+      console.log('登録成功:', response);
       onLogin(response.data.user, response.data.token);
     } catch (error) {
       setError(error.response?.data?.message || '登録に失敗しました');
