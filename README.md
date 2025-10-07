@@ -37,3 +37,24 @@ react-app/
         ├── Register.js    # 会員登録ページ
         ├── BookList.js    # 本一覧ページ
         └── AddBook.js     # 本追加ページ
+
+
+
+改善点
+:3000/register:1 Access to XMLHttpRequest at 'http://localhost:8000/api/register' from origin 'http://localhost:3000' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+と新規登録ができない。
+原因
+APIのURLが間違っている？
+po-rt:8000ではなくport:80にする?
+解決策
+react-app/src/App.jsのaxios.defaults.baseURLを'http://localhost/api'に変更
+■修正内容
+react-app/src/App.js
+--- a/file:///Users/mnitta/smarthospital/react-app/src/App.js
++++ b/file:///Users/mnitta/smarthospital/react-app/src/App.js
+@@ -11,7 +11,7 @@   import Header from './components/Header';
+ 
+ // API Configuration
+-axios.defaults.baseURL = 'http://localhost:8000/api';  --- IGNORE ---
++axios.defaults.baseURL = 'http://localhost/api';
+ axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';                  
