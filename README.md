@@ -58,3 +58,24 @@ react-app/src/App.js
 -axios.defaults.baseURL = 'http://localhost:8000/api';  --- IGNORE ---
 +axios.defaults.baseURL = 'http://localhost/api';
  axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';                  
+
+
+ 📝 残りの推奨改善点
+Docker環境の再起動
+cd "c:\Users\masato.nitta\mnitta\my-devlop\smarthospital"
+docker-compose down
+docker-compose up --build
+
+Laravel側の初期設定
+# コンテナ内で実行
+php artisan migrate
+php artisan db:seed
+
+React側の依存関係インストール
+npm install
+npm start
+🎯 主な改善ポイント
+ポート設定: 8000:80 は正しい設定です
+API URL: http://localhost:8000/api も正しい設定です
+CORS問題: Nginx設定とLaravel CORS設定の両方で解決
+認証: Sanctumの適切な設定を追加
