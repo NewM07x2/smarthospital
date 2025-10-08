@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { formatDate } from '../utils/fotmatDate';
 
 const BookList = () => {
   const [books, setBooks] = useState([]);
@@ -60,8 +61,8 @@ const BookList = () => {
         <div className="book-grid">
           {books.map(book => (
             <div key={book.id} className="book-card">
-              <h3 className="book-title">{book.title}</h3>
-              <p className="book-read_date">読書日: {book.read_date}</p>
+              <h3 className="book-title">「{book.title}」</h3>
+              <p className="book-read_date">読書日: {formatDate(book.read_date)}</p>
               <p className="book-review">感想: {book.review}</p>
               <div className="book-actions">
                 <button 
