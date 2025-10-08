@@ -56,14 +56,14 @@ services:
     ports:
       - "8000:80" # ホストの8000ポートでLaravelにアクセス
     depends_on:
-      - app
+      - laravel-app
     networks:
       - app-network
 
   # -----------------------------------------------------
   # 4. Node.js (React フロントエンド実行環境)
   # -----------------------------------------------------
-  react-app: # ★サービス名が 'frontend' に変更されています
+  react-app:
     image: node:18-alpine
     container_name: react_front
     working_dir: /app
@@ -71,8 +71,7 @@ services:
       - ./react-app:/app
     ports:
       - "3000:3000"
-    # ★★★ 修正後のコマンド：開発サーバーの起動のみに絞る ★★★
-    command: npm start
+    command: sh -c "npm install && npm start"
     networks:
       - app-network
 
