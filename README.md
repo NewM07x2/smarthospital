@@ -37,3 +37,136 @@ react-app/
         ├── Register.js    # 会員登録ページ
         ├── BookList.js    # 本一覧ページ
         └── AddBook.js     # 本追加ページ
+
+## Laravelセットアップ手順
+
+以下の手順でLaravelをセットアップしてください。
+
+1. **Laravelプロジェクトの作成**
+
+   ```bash
+   docker-compose run --rm app composer create-project --prefer-dist laravel/laravel laravel-app
+   ```
+
+2. **.envファイルの設定**
+
+   - `.env`ファイルを作成し、以下の内容を設定してください。
+
+     ```env
+     DB_CONNECTION=mysql
+     DB_HOST=db
+     DB_PORT=3306
+     DB_DATABASE=your_database_name
+     DB_USERNAME=your_username
+     DB_PASSWORD=your_password
+     ```
+
+3. **Laravelの初期設定**
+
+   ```bash
+   docker-compose run --rm app php artisan key:generate
+   docker-compose run --rm app php artisan migrate
+   ```
+
+4. **コンテナの起動**
+
+   ```bash
+   docker-compose up -d
+   ```
+
+## 認証機能の実装手順
+
+1. **Laravel Breezeのインストール**
+
+   ```bash
+   docker-compose run --rm app composer require laravel/breeze --dev
+   docker-compose run --rm app php artisan breeze:install api
+   ```
+
+2. **フロントエンドのセットアップ**
+
+   ```bash
+   docker-compose run --rm frontend npm install
+   docker-compose run --rm frontend npm run build
+   ```
+
+3. **API認証の設定**
+
+   Laravel Sanctumを使用してAPI認証を構築します。
+
+   ```bash
+   docker-compose run --rm app composer require laravel/sanctum
+   docker-compose run --rm app php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+   docker-compose run --rm app php artisan migrate
+   ```
+
+4. **CORS設定の更新**
+
+   `config/cors.php`を編集し、フロントエンドからのリクエストを許可します。
+
+   ```php
+   'paths' => ['api/*', 'sanctum/csrf-cookie'],
+   ```
+
+## APIエンドポイント作成手順
+
+1. **コントローラーの作成**
+
+   以下のコマンドを使用して、必要なコントローラーを作成します。
+
+   ```bash
+   docker-compose run --rm app php artisan make:controller Auth/RegisterController
+   docker-compose run --rm app php artisan make:controller Auth/LoginController
+   docker-compose run --rm app php artisan make:controller BookController
+   ```
+
+2. **ルートの設定**
+
+   `routes/api.php`に以下のルートを追加します。
+
+   ```php
+   use App\Http\Controllers\Auth\RegisterController;
+   use App\Http\Controllers\Auth\LoginController;
+   use App\Http\Controllers\BookController;
+
+   Route::post('/register', [RegisterController::class, 'register']);
+   Route::post('/login', [LoginController::class, 'login']);
+
+   Route::middleware('auth:sanctum')->group(function () {
+       Route::get('/books', [BookController::class, 'index']);
+       Route::post('/books', [BookController::class, 'store']);
+       Route::get('/books/{id}', [BookController::class, 'show']);
+       Route::put('/books/{id}', [BookController::class, 'update']);
+       Route::delete('/books/{id}', [BookController::class, 'destroy']);
+   });
+   ```
+
+3. **モデルとマイグレーションの作成**
+
+   `Book`モデルとマイグレーションを作成します。
+
+   ```bash
+   docker-compose run --rm app php artisan make:model Book -m
+   ```
+
+   マイグレーションファイルを編集し、以下のようにテーブル構造を定義します。
+
+   ```php
+   Schema::create('books', function (Blueprint $table) {
+       $table->id();
+       $table->string('title');
+       $table->date('read_date');
+       $table->text('review');
+       $table->timestamps();
+   });
+   ```
+
+   マイグレーションを実行します。
+
+   ```bash
+   docker-compose run --rm app php artisan migrate
+   ```
+
+4. **動作確認**
+
+   Postmanやcurlを使用して、APIエンドポイントが正しく動作するか確認してください。
