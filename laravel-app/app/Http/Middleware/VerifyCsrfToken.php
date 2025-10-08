@@ -12,6 +12,8 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        //
+        'api/register',
+        'api/login',
+        'api/*', // APIルート全体を除外する場合はこちら
     ];
 }
