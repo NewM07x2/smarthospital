@@ -1,7 +1,8 @@
 <?php
 
-return [
+use function env;
 
+return [
     /*
     |--------------------------------------------------------------------------
     | Cross-Origin Resource Sharing (CORS) Configuration
