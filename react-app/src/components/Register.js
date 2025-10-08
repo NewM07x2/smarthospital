@@ -38,14 +38,22 @@ const Register = ({ onLogin }) => {
       console.error('登録エラー:', error)
       if (error.response) {
         // サーバーからのレスポンスエラー
-        setError(error.response.data?.message || '登録に失敗しました')
+        console.error(error.response)
+        const errorMessages = error.response.data.errors.email
+        if (errorMessages && errorMessages.length > 0) {
+          setError(errorMessages[0])
+          return
+        }
+        setError('登録に失敗しました')
       } else if (error.request) {
         // ネットワークエラー（CORS等）
+        console.error(error.request)
         setError(
           'サーバーに接続できません。ネットワーク設定を確認してください。'
         )
       } else {
         // その他のエラー
+        console.error(error.request)
         setError('予期しないエラーが発生しました')
       }
     } finally {
