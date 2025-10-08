@@ -167,6 +167,38 @@ react-app/
    docker-compose run --rm app php artisan migrate
    ```
 
-4. **動作確認**
+## APIエンドポイントの動作確認
 
-   Postmanやcurlを使用して、APIエンドポイントが正しく動作するか確認してください。
+以下のコマンドを使用して、APIエンドポイントが正しく動作するか確認してください。
+
+### 1. ユーザー登録
+
+```bash
+curl -X POST http://localhost:8000/api/register \
+-H "Content-Type: application/json" \
+-d '{"name": "Test User", "email": "test@example.com", "password": "password", "password_confirmation": "password"}'
+```
+
+### 2. ログイン
+
+```bash
+curl -X POST http://localhost:8000/api/login \
+-H "Content-Type: application/json" \
+-d '{"email": "test@example.com", "password": "password"}'
+```
+
+### 3. 本の一覧取得
+
+```bash
+curl -X GET http://localhost:8000/api/books \
+-H "Authorization: Bearer <your-auth-token>"
+```
+
+### 4. 本の登録
+
+```bash
+curl -X POST http://localhost:8000/api/books \
+-H "Authorization: Bearer <your-auth-token>" \
+-H "Content-Type: application/json" \
+-d '{"title": "Sample Book", "read_date": "2025-10-01", "review": "This is a great book!"}'
+```
