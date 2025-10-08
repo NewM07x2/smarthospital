@@ -37,22 +37,22 @@ docker-compose run --rm app php artisan vendor:publish --provider="Laravel\Sanct
 docker-compose run --rm app php artisan migrate
 
 # 5. モデルとコントローラー作成
-docker-compose run --rm app php artisan make:model Book -m
-docker-compose run --rm app php artisan make:controller Auth/RegisterController
-docker-compose run --rm app php artisan make:controller Auth/LoginController
-docker-compose run --rm app php artisan make:controller BookController --resource
+docker-compose run --rm app php artisan make:model Book -m;
+docker-compose run --rm app php artisan make:controller Auth/RegisterController;
+docker-compose run --rm app php artisan make:controller Auth/LoginController;
+docker-compose run --rm app php artisan make:controller BookController --resource;
 
 # 6. マイグレーション実行（Bookテーブル作成後）
-docker-compose run --rm app php artisan migrate
+docker-compose run --rm app php artisan migrate;
 
 # 7. コンテナ起動
 docker-compose up -d
 
 # 8. 設定反映とキャッシュクリア
-docker-compose exec app php artisan config:clear
-docker-compose exec app php artisan cache:clear
-docker-compose exec app php artisan route:clear
-docker-compose exec app php artisan view:clear
+docker-compose exec app php artisan config:clear;
+docker-compose exec app php artisan cache:clear;
+docker-compose exec app php artisan route:clear;
+docker-compose exec app php artisan view:clear;
 ```
 
 詳細な手順は `LARAVEL_SETUP.md` を参照してください。
