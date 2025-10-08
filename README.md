@@ -202,3 +202,8 @@ curl -X POST http://localhost:8000/api/books \
 -H "Content-Type: application/json" \
 -d '{"title": "Sample Book", "read_date": "2025-10-01", "review": "This is a great book!"}'
 ```
+
+docker-compose down -v && docker-compose up --build -d
+docker-compose exec laravel-app bash
+php artisan migrate:fresh
+exit
