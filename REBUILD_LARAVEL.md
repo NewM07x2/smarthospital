@@ -89,3 +89,21 @@ docker-compose up -d
 ## 9. React アプリとの接続確認
 
 ブラウザで React アプリを開き、Laravel API にアクセスして CORS エラーが解消されているか確認します。
+
+
+
+# 1. Laravel Sanctumのインストール
+docker-compose run --rm app composer require laravel/sanctum
+docker-compose run --rm app php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+
+# 2. マイグレーションの実行
+docker-compose run --rm app php artisan migrate
+
+# 3. コンテナの起動
+docker-compose up -d
+
+# 4. キャッシュクリア
+docker-compose exec app php artisan config:clear
+docker-compose exec app php artisan cache:clear
+docker-compose exec app php artisan route:clear
+docker-compose exec app php artisan view:clear
