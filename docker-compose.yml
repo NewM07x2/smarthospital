@@ -24,7 +24,7 @@ services:
   # -----------------------------------------------------
   # 2. PHP-FPM (Laravel バックエンド実行環境)
   # -----------------------------------------------------
-  app:
+  laravel-app:
     build:
       context: .
       dockerfile: docker/php/Dockerfile
@@ -63,7 +63,7 @@ services:
   # -----------------------------------------------------
   # 4. Node.js (React フロントエンド実行環境)
   # -----------------------------------------------------
-  frontend: # ★サービス名が 'frontend' に変更されています
+  react-app: # ★サービス名が 'frontend' に変更されています
     image: node:18-alpine
     container_name: react_front
     working_dir: /app
