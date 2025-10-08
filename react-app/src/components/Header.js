@@ -23,7 +23,7 @@ const Header = ({ user, onLogout }) => {
         </nav>
         
         <div className="user-info">
-          <span>ようこそ、{user.name}さん</span>
+          <span>{user.name} でログイン中</span>
           <button onClick={handleLogout} className="logout-btn">
             ログアウト
           </button>

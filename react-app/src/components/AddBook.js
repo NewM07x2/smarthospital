@@ -96,7 +96,7 @@ const AddBook = () => {
             className="submit-btn"
             disabled={loading}
           >
-            {loading ? '追加中...' : '本を追加'}
+            {loading ? '追加中...' : '追加'}
           </button>
         </div>
       </form>
