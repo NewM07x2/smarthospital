@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->index(); 
+            // 課題で必要なカラムの例
+            $table->string('title'); // 読んだ本のタイトル
+            $table->date('read_date'); // 読んだ日
+            $table->text('impression'); // 読んだ感想
             $table->timestamps();
         });
     }

@@ -6,8 +6,8 @@ const AddBook = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: '',
-    author: '',
-    isbn: '',
+    read_date: '',
+    review: '',
     publication_date: ''
   });
   const [error, setError] = useState('');
@@ -58,38 +58,24 @@ const AddBook = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="author">著者</label>
-          <input
-            type="text"
-            id="author"
-            name="author"
-            value={formData.author}
-            onChange={handleChange}
-            required
-            disabled={loading}
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="isbn">ISBN</label>
-          <input
-            type="text"
-            id="isbn"
-            name="isbn"
-            value={formData.isbn}
-            onChange={handleChange}
-            required
-            disabled={loading}
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="publication_date">出版日</label>
+          <label htmlFor="read_date">読書日</label>
           <input
             type="date"
-            id="publication_date"
-            name="publication_date"
-            value={formData.publication_date}
+            id="read_date"
+            name="read_date"
+            value={formData.read_date}
+            onChange={handleChange}
+            required
+            disabled={loading}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="review">感想</label>
+          <textarea
+            id="review"
+            name="review"
+            value={formData.review}
             onChange={handleChange}
             required
             disabled={loading}

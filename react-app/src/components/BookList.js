@@ -14,6 +14,7 @@ const BookList = () => {
   const fetchBooks = async () => {
     try {
       const response = await axios.get('/books');
+      console.log(response.data); // デバッグ用ログ
       setBooks(response.data);
     } catch (error) {
       setError('本の一覧を取得できませんでした');
@@ -60,11 +61,8 @@ const BookList = () => {
           {books.map(book => (
             <div key={book.id} className="book-card">
               <h3 className="book-title">{book.title}</h3>
-              <p className="book-author">著者: {book.author}</p>
-              <p className="book-isbn">ISBN: {book.isbn}</p>
-              <p className="book-publication-date">
-                出版日: {new Date(book.publication_date).toLocaleDateString('ja-JP')}
-              </p>
+              <p className="book-read_date">読書日: {book.read_date}</p>
+              <p className="book-review">感想: {book.review}</p>
               <div className="book-actions">
                 <button 
                   onClick={() => handleDelete(book.id)}

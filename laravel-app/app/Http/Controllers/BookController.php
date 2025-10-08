@@ -10,6 +10,7 @@ class BookController extends Controller
     public function index(Request $request)
     {
         $books = $request->user()->books()->latest()->get();
+        
         return response()->json($books);
     }
 
