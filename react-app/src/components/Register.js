@@ -39,7 +39,7 @@ const Register = ({ onLogin }) => {
       if (error.response) {
         // サーバーからのレスポンスエラー
         console.error(error.response)
-        const errorMessages = error.response.data.errors.email
+        const errorMessages = error.response.data.errors
         if (errorMessages && errorMessages.length > 0) {
           setError(errorMessages[0])
           return
