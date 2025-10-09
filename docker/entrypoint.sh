@@ -9,15 +9,15 @@ done
 echo "Database is ready!"
 
 # Laravelの起動準備
-php artisan config:clear
-php artisan view:clear
+php artisan config:clear # 設定キャッシュをクリア
+php artisan view:clear   # Viewキャッシュをクリア
 
-# データベースのマイグレーションを実行
-# *注: 初回起動時のみ実行したい場合は、ロックファイルなどで制御が必要です。
-#      ここではシンプルに、起動時に常に実行します。
-php artisan migrate --force
+# データベースのマイグレーションを実行 (migrate:freshに置換)
+# ⚠️ 注意: 起動のたびに全テーブルを削除して再作成します。
+php artisan migrate:fresh --force
 
-# キャッシュをクリア（必要に応じて）
+# キャッシュをクリア
 php artisan cache:clear
+
 # PHP-FPMを起動 (DockerfileのCMDで指定された最終プロセス)
 exec "$@"

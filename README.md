@@ -206,4 +206,7 @@ curl -X POST http://localhost:8000/api/books \
 docker-compose down -v && docker-compose up --build -d
 docker-compose exec laravel-app bash
 php artisan migrate:fresh
+php artisan config:clear
+php artisan view:clear
+php artisan cache:clear
 exit
