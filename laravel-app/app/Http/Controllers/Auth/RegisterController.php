@@ -17,7 +17,8 @@ class RegisterController extends Controller
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users',
                 'password' => 'required|string|min:8',
-            ], [
+            ],
+            [
                 // カスタムメッセージを配列で渡す
                 'email.unique' => 'ご指定のメールアドレスは既に使用されています。',
             ]);
