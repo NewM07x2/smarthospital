@@ -16,6 +16,9 @@ php artisan view:clear   # Viewキャッシュをクリア
 # ⚠️ 注意: 起動のたびに全テーブルを削除して再作成します。
 php artisan migrate:fresh --force
 
+# アプリケーションの最適化
+php artisan optimize
+
 # キャッシュをクリア
 php artisan cache:clear
 
