@@ -32,28 +32,30 @@ const Register = ({ onLogin }) => {
 
     try {
       const response = await axios.post('/register', formData)
-      console.log('登録成功:', response)
+      console.debug('登録成功:', response)
       onLogin(response.data.user, response.data.token)
     } catch (error) {
-      console.error('登録エラー:', error)
+      console.debug('登録エラー:', error)
       if (error.response) {
+        var errorMessage = '登録に失敗しました'
         // サーバーからのレスポンスエラー
-        console.error(error.response)
         const errorMessages = error.response.data.errors
-        if (errorMessages && errorMessages.length > 0) {
-          setError(errorMessages[0])
+        if (errorMessages) {
+          // バリデーションエラーメッセージを表示
+          errorMessage = errorMessages?.email?.[0] ?? errorMessage;
+          setError(errorMessage)
           return
         }
-        setError('登録に失敗しました')
+        setError(errorMessage)
       } else if (error.request) {
         // ネットワークエラー（CORS等）
-        console.error(error.request)
+        console.debug(error.request)
         setError(
           'サーバーに接続できません。ネットワーク設定を確認してください。'
         )
       } else {
         // その他のエラー
-        console.error(error.request)
+        console.debug(error.request)
         setError('予期しないエラーが発生しました')
       }
     } finally {
