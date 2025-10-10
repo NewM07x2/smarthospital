@@ -109,6 +109,9 @@ php artisan view:clear
 # 1. コンテナを停止
 docker-compose down
 
+# 1.1 ボリュームも削除する場合
+docker-compose down -v
+
 # 2. 不要なデータを削除
 docker system prune -f
 
