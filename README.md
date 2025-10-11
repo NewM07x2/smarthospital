@@ -53,6 +53,7 @@ Dockerコンテナを起動した後、Laravelのキャッシュをクリアす�
 docker-compose exec laravel-app php artisan config:clear
 docker-compose exec laravel-app php artisan route:clear
 docker-compose exec laravel-app php artisan view:clear
+docker-compose exec laravel-app php artisan optimize
 docker-compose exec laravel-app php artisan cache:clear
 ```
 
