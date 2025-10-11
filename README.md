@@ -34,6 +34,7 @@ docker-compose up --build -d
 ### 3. Laravelの初期設定
 
 ```bash
+docker-compose exec laravel-app composer install
 docker-compose exec laravel-app php artisan migrate --seed
 docker-compose exec laravel-app php artisan key:generate
 ```
