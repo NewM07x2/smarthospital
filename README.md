@@ -44,6 +44,7 @@ docker-compose exec laravel-app php artisan key:generate
 ```bash
 docker-compose exec react-app npm install
 docker-compose exec react-app npm start
+exit
 ```
 
 ### 5. キャッシュのクリア
