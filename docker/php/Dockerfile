@@ -27,3 +27,8 @@ RUN apk add tzdata \
 # 作業ディレクトリの設定
 WORKDIR /var/www/html
 
+# ホストの ./laravel-app/ から composer ファイルをコンテナへコピー
+COPY laravel-app/composer.json laravel-app/composer.lock /var/www/html/
+
+# 依存関係をインストール
+RUN composer install --no-dev --optimize-autoloader
