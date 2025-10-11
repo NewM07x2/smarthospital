@@ -22,7 +22,7 @@
 
 ```bash
 git clone <リポジトリのURL>
-cd smarthospital
+cd book-read-app
 ```
 
 ### 2. Dockerコンテナの起動
